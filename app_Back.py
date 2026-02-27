@@ -14,7 +14,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi.middleware.cors import CORSMiddleware
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For testing. Later replace with frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # =========================
 # BASE FRESHNESS HOURS
 # =========================
@@ -434,3 +442,4 @@ def estimate_food(data: SurplusInput):
 @app.get("/")
 def root():
     return {"message": "Food Wastage Reduction & Estimation API is running"}
+
